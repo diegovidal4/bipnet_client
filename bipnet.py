@@ -13,7 +13,6 @@ if __name__=="__main__":
 	while(1):
 		while(current_tag==rfid_tag.last_tag):
 			time.sleep(0.1)
-
 		current_tag=rfid_tag.last_tag
 		print "Cambio el tag!:%s" % current_tag 
 
@@ -21,9 +20,9 @@ if __name__=="__main__":
 		tag_valido=tools.tag_valido(current_tag)
 		#tag_valido=urllib2.urlopen("http://example.com/foo/bar").read()
 		lcd.lcd_clean()
-        lcd.lcd_string("User Id:")
-        lcd.lcd_goto(2,0)
-        lcd.lcd_string(current_tag)
+		lcd.lcd_string("User Id:")
+		lcd.lcd_goto(2,0)
+		lcd.lcd_string(current_tag)
 		if tag_valido: #(string del camilo)
 			#Obtener la informacion del usuario (nombre,saldo,tipo_usuario)
 			#imprimir que debe ingresar la cantidad a utilizar

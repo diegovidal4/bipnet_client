@@ -3,7 +3,6 @@ import random
 import subprocess
 import sys,time
 import urllib2
-import lcd_kp as lcd
 
 class Utils:
     def pass_generator(self,size=6,chars=string.ascii_lowercase + string.digits):

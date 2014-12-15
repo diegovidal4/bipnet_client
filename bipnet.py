@@ -8,6 +8,8 @@ import lcd_kp as lcd
 
 if __name__=="__main__":
 	tools=Utils()
+	lcd.setup()
+  	lcd.lcd_init()
 	rfid_tag=RFID_Controller()
 	current_tag=0
 	while(1):

@@ -2,7 +2,7 @@ from Phidgets.PhidgetException import PhidgetErrorCodes, PhidgetException
 from Phidgets.Events.Events import AttachEventArgs, DetachEventArgs, ErrorEventArgs, OutputChangeEventArgs, TagEventArgs
 from Phidgets.Devices.RFID import RFID, RFIDTagProtocol
 from utils import Utils
-import urllib2
+
 
 class RFID_Controller:
 

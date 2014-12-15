@@ -22,4 +22,4 @@ def clock(seconds):
 
 
 def hostapd(command='status'):
-    print subprocess.call(['service','hostapd',command])
+    subprocess.check_call(['service','hostapd',command])

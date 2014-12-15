@@ -12,5 +12,8 @@ if __name__=="__main__":
 	with open('/etc/hostapd/hostapd.conf','w') as conf_file:
 		conf_file.write(hostapd_conf)
 
-	utils.hostapd()
-	utils.clock(120)
+	try:
+		utils.hostapd()
+		utils.clock(120)
+	except:
+		print "Error: Hostapd no encontrado"

@@ -11,6 +11,8 @@ class RFID_Controller:
 		try:
 			self.rfid = RFID()
 			self.rfid.openPhidget()
+			# print("Turning on the RFID antenna...")
+			# self.rfid.setAntennaOn(True)
 			self.rfid.setOnAttachHandler(self.rfidAttached)
 			self.rfid.setOnDetachHandler(self.rfidDetached)
 			self.rfid.setOnErrorhandler(self.rfidError)
@@ -52,9 +54,9 @@ class RFID_Controller:
 		#Verificar si el tag es valido
 		#tag_valido=urllib2.urlopen("http://example.com/foo/bar").read()
 		#Se llama a la configuracion de hostapd
-		password=tools.set_hostapd_conf()
-		print "Password generada:%s" % password
-		print("RFID %i: Tag Read: %s" % (source.getSerialNum(), e.tag))
+		# password=tools.set_hostapd_conf()
+		# print "Password generada:%s" % password
+		# print("RFID %i: Tag Read: %s" % (source.getSerialNum(), e.tag))
 
 	def rfidTagLost(self,e):
 		source = e.device

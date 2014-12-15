@@ -14,7 +14,7 @@ if __name__=="__main__":
 		conf_file.write(hostapd_conf)
 
 	try:
-		tools.hostapd()
+		tools.hostapd('restart')
 		tools.clock(120)
 	except:
 		print "Error: Hostapd no encontrado"

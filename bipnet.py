@@ -12,6 +12,17 @@ if __name__=="__main__":
 	print("Press Enter to quit...")
 
 	chr = sys.stdin.read(1)
+	print("Cerrando...")
+
+	try:
+	    rfid.closePhidget()
+	except PhidgetException as e:
+	    print("Phidget Exception %i: %s" % (e.code, e.details))
+	    print("Exiting....")
+	    exit(1)
+
+	print("Listo!.")
+	exit(0)
 	#tools.clock(60)
 	# try:
 	# 	tools.hostapd('restart')

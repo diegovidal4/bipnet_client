@@ -46,6 +46,9 @@ def setup():
   GPIO.setup(LCD_D6, GPIO.OUT, initial = GPIO.LOW) # DB6
   GPIO.setup(LCD_D7, GPIO.OUT, initial = GPIO.LOW) # DB7
 
+def lcd_clean():
+  lcd_byte(0b00000001,LCD_CMD)
+
 def lcd_goto(line, pos):
   if line == 1:
     lcd_nibble(0b0000,LCD_CMD)

@@ -4,10 +4,10 @@ from Phidgets.Devices.RFID import RFID, RFIDTagProtocol
 from utils import Utils
 import urllib2
 
-
 class RFID_Controller:
 
 	def __init__(self):
+		self.last_tag=0
 		try:
 			self.rfid = RFID()
 			self.rfid.openPhidget()
@@ -49,8 +49,9 @@ class RFID_Controller:
 	def rfidTagGained(self,e):
 		tools=Utils()
 		source = e.device
+		self.last_tag=e.tag
 		self.rfid.setLEDOn(1)
-		print("Tag leido:"+e.tag)
+		#print("Tag leido:"+e.tag)
 		#Verificar si el tag es valido
 		#tag_valido=urllib2.urlopen("http://example.com/foo/bar").read()
 		#Se llama a la configuracion de hostapd

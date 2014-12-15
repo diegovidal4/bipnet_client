@@ -8,6 +8,7 @@
 
 import RPi.GPIO as GPIO
 import time
+from evdev import InputDevice, ecodes
  
 # Define GPIO to LCD mapping
 LCD_RS = 7
@@ -27,6 +28,13 @@ LCD_LINE_2 = 0x40 #0x40 # LCD RAM address for the 2nd line
 # Timing constants
 E_DELAY = 0.002
 
+# Teclas de interes
+# 96 = Enter, [71-73] -> [7-9], [75-77] -> [4-6] ... , 82 = 0, 14 = borrar
+key_list = dict([(96,"Enter"),
+                 (71,7),(72,8),(73,9),
+                 (75,4),(76,5),(77,6),
+                 (79,1),(80,2),(81,3),
+                 (82,0),(14,"BckSpc")])
 
 def setup():
 
@@ -114,4 +122,24 @@ def lcd_byte(bits, mode):
   lcd_nibble(int(bits/16),mode)
    # Low bits
   lcd_nibble(bits%16,mode) 
-  
+
+def kp_input(dev):
+
+  input = ""
+  count = 0
+  for event in dev.read_loop():
+    if event.code == 96:
+      break
+    if event.value == 0:
+      if event.code == 14:
+        if count > 0:
+          lcd_bcksp()
+          input = input[:-1]
+          count = count - 1
+      elif event.code in key_list:
+        lcd_string(str(key_list[event.code]))
+        input = input + str(key_list[event.code])
+        count = count + 1
+  return input
+
+

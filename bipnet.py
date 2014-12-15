@@ -5,6 +5,14 @@ import sys
 
 if __name__=="__main__":
 	rfid_tag=RFID_Controller()
+    current_tag=0
+
+    while(current_tag==rfid_tag.last_tag):
+    	time.sleep(0.1)
+
+    current_tag=rfid_tag.last_tag
+    print "Cambio el tag!:%s" % current_tag 
+
 	#Se crea la variable con toda la configuracion a escribir en hostapd
 	#Escribimos el archivo
 	print("Press Enter to quit...")

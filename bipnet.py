@@ -2,6 +2,7 @@ from utils import Utils
 from rfid import RFID_Controller
 from Phidgets.PhidgetException import PhidgetErrorCodes, PhidgetException
 import sys,time
+import lcd_kp as lcd
 
 
 
@@ -19,6 +20,10 @@ if __name__=="__main__":
 		#Verificar si el tag es valido
 		tag_valido=tools.tag_valido(current_tag)
 		#tag_valido=urllib2.urlopen("http://example.com/foo/bar").read()
+		lcd.lcd_clean()
+        lcd.lcd_string("User Id:")
+        lcd.lcd_goto(2,0)
+        lcd.lcd_string(current_tag)
 		if tag_valido: #(string del camilo)
 			#Obtener la informacion del usuario (nombre,saldo,tipo_usuario)
 			#imprimir que debe ingresar la cantidad a utilizar

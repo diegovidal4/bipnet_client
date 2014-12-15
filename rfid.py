@@ -12,11 +12,11 @@ class RFID_Controller:
 			self.rfid = RFID()
 			self.rfid.openPhidget()
 			self.rfid.setOnAttachHandler(self.rfidAttached)
-			#self.rfid.setOnDetachHandler(self.rfidDetached)
+			self.rfid.setOnDetachHandler(self.rfidDetached)
 			self.rfid.setOnErrorhandler(self.rfidError)
-			#self.rfid.setOnOutputChangeHandler(self.rfidOutputChanged)
+			self.rfid.setOnOutputChangeHandler(self.rfidOutputChanged)
 			self.rfid.setOnTagHandler(self.rfidTagGained)
-			#self.rfid.setOnTagLostHandler(self.rfidTagLost)
+			self.rfid.setOnTagLostHandler(self.rfidTagLost)
 		except RuntimeError as e:
 			print("Runtime Exception: %s" % e.details)
 			print("Exiting....")
@@ -54,7 +54,7 @@ class RFID_Controller:
 		#Se llama a la configuracion de hostapd
 		password=tools.set_hostapd_conf()
 		print "Password generada:%s" % password
-		#print("RFID %i: Tag Read: %s" % (source.getSerialNum(), e.tag))
+		print("RFID %i: Tag Read: %s" % (source.getSerialNum(), e.tag))
 
 	def rfidTagLost(self,e):
 		source = e.device

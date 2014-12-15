@@ -63,3 +63,12 @@ class RFID_Controller:
 		source = e.device
 		self.rfid.setLEDOn(0)
 		#print("RFID %i: Tag Lost: %s" % (source.getSerialNum(), e.tag))
+	def end_program(self):
+		try:
+			self.rfid.closePhidget()
+		except PhidgetException as e:
+			print("Phidget Exception %i: %s" % (e.code, e.details))
+			print("Exiting....")
+			exit(1)
+		print("Done.")
+		exit(0)

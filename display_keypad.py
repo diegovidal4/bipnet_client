@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 import RPi.GPIO as GPIO
->>>>>>> afaa1703da1c07f2c55114c0c1d1dbc21919dd67
 import lcd_kp as lib
 import time
 import os

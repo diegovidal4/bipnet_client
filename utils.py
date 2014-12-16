@@ -3,7 +3,6 @@ import random
 import subprocess
 import sys,time
 import urllib2
-import requests
 
 class Utils:
     def pass_generator(self,size=6,chars=string.ascii_lowercase + string.digits):
@@ -35,7 +34,9 @@ class Utils:
         return out
 
     def verificar_cupon(self,cupon):
-        tag_valido= requests.get("https://amber-heat-2069.firebaseapp.com/api/verify/cupon/"+cupon).read()
+        response = urllib2.urlopen("https://amber-heat-2069.firebaseapp.com/api/verify/cupon/"+cupon)
+        data = json.loads(response.read())
+        print data
         return (True,30)
 
     def tag_valido(self,current_tag):

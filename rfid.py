@@ -21,9 +21,6 @@ class RFID_Controller:
 			print("Runtime Exception: %s" % e.details)
 			print("Exiting....")
 			exit(1)
-		try:
-			print("Turning on the RFID antenna...")
-			self.rfid.setAntennaOn(True)
 		except PhidgetException as e:
 			print("Phidget Exception %i: %s" % (e.code, e.details))
 			exit(1)

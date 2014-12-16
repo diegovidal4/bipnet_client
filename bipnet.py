@@ -58,9 +58,10 @@ if __name__=="__main__":
 			else:
 				lcd.lcd_clean()
 				lcd.lcd_string("Creando red wifi...")
-				lcd.lcd_clean()
+				tools.hostapd("stop")
 				password=tools.set_hostapd_conf()
-				tools.hostapd("restart")
+				tools.hostapd("start")
+				lcd.lcd_clean()
 				lcd.lcd_string("Red:BIPnet")
 				lcd.lcd_goto(2,0)
 				lcd.lcd_string("Pass:"+password)

@@ -32,7 +32,7 @@ class Utils:
         subprocess.check_call(['service','hostapd',command])
 
     def verificar_cupon(self,cupon):
-        #tag_valido=urllib2.urlopen("http://example.com/foo/bar").read()
+        tag_valido=urllib2.urlopen("https://amber-heat-2069.firebaseapp.com/api/verify/cupon/"+cupon).read()
         return (True,30)
 
     def tag_valido(self,current_tag):

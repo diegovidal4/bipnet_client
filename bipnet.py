@@ -46,7 +46,9 @@ if __name__=="__main__":
 			lcd.lcd_string("Tienes Cupon?")
 			lcd.lcd_goto(2,0)
 			lcd.lcd_string("1. Si, 2. No")
-			tiene_cupon=int(lcd.kp_input(dev))
+			tiene_cupon=lcd.kp_input(dev)
+			while tiene_cupon=='':
+				time.sleep(0.1)
 			print "Tiene cupon?:%i" % tiene_cupon
 			if tiene_cupon==1:
 				tools.menu_cupon(cantidad)

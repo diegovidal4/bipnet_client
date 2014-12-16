@@ -11,8 +11,8 @@ class RFID_Controller:
 		try:
 			self.rfid = RFID()
 			self.rfid.openPhidget()
-			print("Turning on the RFID antenna...")
-			self.rfid.setAntennaOn(True)
+			# print("Turning on the RFID antenna...")
+			# self.rfid.setAntennaOn(True)
 			self.rfid.setOnAttachHandler(self.rfidAttached)
 			self.rfid.setOnDetachHandler(self.rfidDetached)
 			self.rfid.setOnErrorhandler(self.rfidError)

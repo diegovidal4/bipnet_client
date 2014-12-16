@@ -29,12 +29,16 @@ if __name__=="__main__":
 		tag_valido=tools.tag_valido(current_tag)
 		nombre="Diego"
 		#tag_valido=urllib2.urlopen("http://example.com/foo/bar").read()
-		lcd.lcd_clean()
-		lcd.lcd_string("Bienvenido "+nombre)
-		time.sleep(3)
 		if tag_valido: #(string del camilo)
+			lcd.lcd_clean()
+			lcd.lcd_string("Bienvenido "+nombre)
+			time.sleep(3)
 			#Obtener la informacion del usuario (nombre,saldo,tipo_usuario)
 			#imprimir que debe ingresar la cantidad a utilizar
+			lcd.lcd_clean()
+			lcd.lcd_string("Ingrese tiempo ")
+			lcd.lcd_goto(2,0)
+			print lcd.kp_input(dev)  
 			cantidad=int(raw_input("Ingrese la cantidad:"))
 
 			#Ingresar el cupon
@@ -43,6 +47,12 @@ if __name__=="__main__":
 			tiene_cupon=int(raw_input())
 			if tiene_cupon==1:
 				tools.menu_cupon(cantidad)
+		else:
+			lcd.lcd_clean()
+			lcd.lcd_string("Tag Invalido")
+			time.sleep(3)
+			lcd.lcd_clean()
+			lcd.lcd_string("BIPnet WIFI")
 			#Levantar el hostapd con la clave generada por la aplicacion
 
 

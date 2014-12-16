@@ -45,6 +45,7 @@ class Utils:
 
 if __name__=="__main__":
     tools=Utils()
+    print "Password:"+tools.set_hostapd_conf()
     print "Cerrando hostapd"
     print tools.hostapd("stop")
     print "Iniciando hostapd"

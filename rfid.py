@@ -10,19 +10,20 @@ class RFID_Controller:
 		self.last_tag=0
 		try:
 			self.rfid = RFID()
-			self.rfid.openPhidget()
-			# print("Turning on the RFID antenna...")
-			# self.rfid.setAntennaOn(True)
 			self.rfid.setOnAttachHandler(self.rfidAttached)
 			self.rfid.setOnDetachHandler(self.rfidDetached)
 			self.rfid.setOnErrorhandler(self.rfidError)
 			self.rfid.setOnOutputChangeHandler(self.rfidOutputChanged)
 			self.rfid.setOnTagHandler(self.rfidTagGained)
 			self.rfid.setOnTagLostHandler(self.rfidTagLost)
+			self.rfid.openPhidget()
 		except RuntimeError as e:
 			print("Runtime Exception: %s" % e.details)
 			print("Exiting....")
 			exit(1)
+		try:
+			print("Turning on the RFID antenna...")
+			self.rfid.setAntennaOn(True)
 		except PhidgetException as e:
 			print("Phidget Exception %i: %s" % (e.code, e.details))
 			exit(1)

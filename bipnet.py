@@ -2,6 +2,7 @@ from utils import Utils
 from rfid import RFID_Controller
 from Phidgets.PhidgetException import PhidgetErrorCodes, PhidgetException
 import sys,time
+from evdev import InputDevice, ecodes
 import lcd_kp as lcd
 
 

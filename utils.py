@@ -3,6 +3,7 @@ import random
 import subprocess
 import sys,time
 import urllib2
+import requests
 
 class Utils:
     def pass_generator(self,size=6,chars=string.ascii_lowercase + string.digits):
@@ -29,12 +30,21 @@ class Utils:
         return password
 
     def hostapd(self,command='status'):
-        subprocess.check_call(['service','hostapd',command])
+        p=subprocess.Popen(["service", "hostapd",command], stdout=subprocess.PIPE)
+        out, err = p.communicate()
+        return out
 
     def verificar_cupon(self,cupon):
-        tag_valido=urllib2.urlopen("https://amber-heat-2069.firebaseapp.com/api/verify/cupon/"+cupon).read()
+        tag_valido= requests.get("https://amber-heat-2069.firebaseapp.com/api/verify/cupon/"+cupon).read()
         return (True,30)
 
     def tag_valido(self,current_tag):
         #tag_valido=urllib2.urlopen("http://example.com/foo/bar").read()
         return True
+
+if __name__=="__main__":
+    tools=Utils()
+    print "Cerrando hostapd"
+    print tools.hostapd("stop")
+    print "Iniciando hostapd"
+    print tools.hostapd("start")

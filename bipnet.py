@@ -39,13 +39,15 @@ if __name__=="__main__":
 			lcd.lcd_clean()
 			lcd.lcd_string("Ingrese tiempo ")
 			lcd.lcd_goto(2,0)
-			print lcd.kp_input(dev)  
-			cantidad=int(raw_input("Ingrese la cantidad:"))
-
+			cantidad=int(lcd.kp_input(dev))
+			print "Cantidad:"+cantidad
 			#Ingresar el cupon
-			print ("Tienes Cupon?")
-			print ("1. Si, 2. No")
-			tiene_cupon=int(raw_input())
+			lcd.lcd_clean()
+			lcd.lcd_string("Tienes Cupon?")
+			lcd.lcd_goto(2,0)
+			lcd.lcd_string("1. Si, 2. No")
+			tiene_cupon=int(lcd.kp_input(dev))
+			print "Tiene cupon?:"+tiene_cupon
 			if tiene_cupon==1:
 				tools.menu_cupon(cantidad)
 		else:

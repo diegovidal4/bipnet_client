@@ -51,13 +51,6 @@ class RFID_Controller:
 		source = e.device
 		self.last_tag=e.tag
 		self.rfid.setLEDOn(1)
-		#print("Tag leido:"+e.tag)
-		#Verificar si el tag es valido
-		#tag_valido=urllib2.urlopen("http://example.com/foo/bar").read()
-		#Se llama a la configuracion de hostapd
-		# password=tools.set_hostapd_conf()
-		# print "Password generada:%s" % password
-		# print("RFID %i: Tag Read: %s" % (source.getSerialNum(), e.tag))
 
 	def rfidTagLost(self,e):
 		source = e.device

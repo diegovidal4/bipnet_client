@@ -7,11 +7,16 @@ import lcd_kp as lcd
 
 
 if __name__=="__main__":
-	tools=Utils()
-	lcd.setup()
-  	lcd.lcd_init()
 	rfid_tag=RFID_Controller()
 	current_tag=0
+	#Inicializamos clase con herramientas
+	tools=Utils()
+	#Inicializamos el lcd
+	lcd.setup()
+  	lcd.lcd_init()
+  	#KeyPad a usar
+	dev = InputDevice("/dev/input/by-id/usb-05d5_KEYBOARD-event-kbd")
+	dev.grab() # mio!
 	while(1):
 		while(current_tag==rfid_tag.last_tag):
 			time.sleep(0.1)
@@ -20,10 +25,12 @@ if __name__=="__main__":
 
 		#Verificar si el tag es valido
 		tag_valido=tools.tag_valido(current_tag)
+		nombre="Diego"
 		#tag_valido=urllib2.urlopen("http://example.com/foo/bar").read()
 		lcd.lcd_clean()
-		lcd.lcd_string("User Id:")
-		lcd.lcd_goto(2,0)
+		lcd.lcd_string("Bienvenido "+nombre)
+		time.sleep(3)
+		lcd.lcd_clean()
 		lcd.lcd_string(current_tag)
 		if tag_valido: #(string del camilo)
 			#Obtener la informacion del usuario (nombre,saldo,tipo_usuario)

@@ -38,13 +38,3 @@ class Utils:
     def tag_valido(self,current_tag):
         #tag_valido=urllib2.urlopen("http://example.com/foo/bar").read()
         return True
-
-    def menu_cupon(self,cantidad):
-        cupon=raw_input("Ingrese el cupon:")
-        #Verificar cupon
-        valido,descuento=self.verificar_cupon(cupon)
-        if valido:
-            cantidad=cantidad-descuento
-        else:
-            print "Cupon invalido"
-        return cantidad

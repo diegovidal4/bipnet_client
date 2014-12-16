@@ -8,6 +8,7 @@ import lcd_kp as lcd
 
 
 if __name__=="__main__":
+	precio_min=500
 	rfid_tag=RFID_Controller()
 	current_tag=0
 	#Inicializamos clase con herramientas
@@ -45,14 +46,24 @@ if __name__=="__main__":
 			lcd.lcd_clean()
 			lcd.lcd_string("Tienes Cupon?")
 			lcd.lcd_goto(2,0)
-			lcd.lcd_string("1. Si, 2. No : ")
+			lcd.lcd_string("1. Si, 2. No :")
 			tiene_cupon=''
+			#loop para esperar el evento de boton
 			while tiene_cupon=='':
 				time.sleep(0.1)
 				tiene_cupon=lcd.kp_input(dev)
 			print "Tiene cupon?:%i" % int(tiene_cupon)
-			if tiene_cupon==1:
-				tools.menu_cupon(cantidad)
+			if int(tiene_cupon)==1:
+				precio_total=cantidad*precio_min
+			else:
+				lcd.lcd_clean()
+				lcd.lcd_string("Creando red wifi...")
+				lcd.lcd_clean()
+				password=tools.set_hostapd_conf()
+				lcd.lcd_string("Nombre Red:BIPnet")
+				lcd.lcd_goto(2,0)
+				lcd.lcd_string("password:"+password)
+				time.sleep(10)
 		else:
 			lcd.lcd_clean()
 			lcd.lcd_string("Tag Invalido")

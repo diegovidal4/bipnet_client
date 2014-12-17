@@ -80,6 +80,7 @@ if __name__=="__main__":
 			print "acepto?:%i" % int(acepto)
 			if int(acepto)!=1:
 				lcd.lcd_string("Gracias")
+				time.sleep(3)
 				current_tag=0
 			else:
 				tools.restar_monto(data,cantidad*precio_min)

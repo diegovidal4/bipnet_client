@@ -43,7 +43,7 @@ if __name__=="__main__":
 			#print data
 			#nombre=data['username']
 		lcd.lcd_clean()
-		lcd.lcd_string("Bienvenido "+nombre)
+		lcd.lcd_string("Bienvenido diego")
 		time.sleep(3)
 		#Obtener la informacion del usuario (nombre,saldo,tipo_usuario)
 		#imprimir que debe ingresar la cantidad a utilizar

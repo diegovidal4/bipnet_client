@@ -14,13 +14,13 @@ if __name__=="__main__":
 	#Inicializamos el RFID
 	# rfid_tag=RFID_Controller()
 	# rfid_tag.displayDeviceInfo()
-	# print("Turning on the RFID antenna....")
-	# rfid_tag.rfid.setAntennaOn(True)
-	# try:
-	#    rfid_tag.rfid.write("Some Tag", RFIDTagProtocol.PHIDGET_RFID_PROTOCOL_PHIDGETS)
-	# except PhidgetException as e:
-	# 	print("Phidget Exception %i: %s" % (e.code, e.details))
-	# current_tag=0
+	print("Turning on the RFID antenna....")
+	rfid_tag.rfid.setAntennaOn(True)
+	try:
+	   rfid_tag.rfid.write("Some Tag", RFIDTagProtocol.PHIDGET_RFID_PROTOCOL_PHIDGETS)
+	except PhidgetException as e:
+		print("Phidget Exception %i: %s" % (e.code, e.details))
+	current_tag=0
 	#Inicializamos clase con herramientas
 	tools=Utils()
 	#Inicializamos el lcd
@@ -29,56 +29,57 @@ if __name__=="__main__":
   	lcd.lcd_clean()
 	lcd.lcd_string("BIPnet WIFI")
   	#KeyPad a usar
-	#dev = InputDevice("/dev/input/by-id/usb-05d5_KEYBOARD-event-kbd")
-	#dev.grab()
+	dev = InputDevice("/dev/input/by-id/usb-05d5_KEYBOARD-event-kbd")
+	dev.grab()
 	while(1):
 		#Loop para no dejar que otro tag interfiera
 		# while(current_tag==rfid_tag.last_tag):
 		# 	time.sleep(0.1)
 		# current_tag=rfid_tag.last_tag
-		# print "Cambio el tag!:%s" % current_tag
+		current_tag="4d004a9d26"
+		print "Cambio el tag!:%s" % current_tag
 		#Verificar si el tag es valido
-		#data=tools.tag_valido(current_tag)
-		#if data: #(string del camilo)
-			#print data
-			#nombre=data['username']
-		lcd.lcd_clean()
-		lcd.lcd_string("Bienvenido diego")
-		time.sleep(3)
-		#Obtener la informacion del usuario (nombre,saldo,tipo_usuario)
-		#imprimir que debe ingresar la cantidad a utilizar
-		lcd.lcd_clean()
-		lcd.lcd_string("Ingrese tiempo ")
-		lcd.lcd_goto(2,0)
-		#cantidad=int(lcd.kp_input(dev))
-		#print "Cantidad:%i" % cantidad
+		data=tools.tag_valido(current_tag)
+		if data: #(string del camilo)
+			print data
+			nombre=data['username']
+			lcd.lcd_clean()
+			lcd.lcd_string("Bienvenido diego")
+			time.sleep(3)
+			#Obtener la informacion del usuario (nombre,saldo,tipo_usuario)
+			#imprimir que debe ingresar la cantidad a utilizar
+			lcd.lcd_clean()
+			lcd.lcd_string("Ingrese tiempo ")
+			lcd.lcd_goto(2,0)
+			cantidad=int(lcd.kp_input(dev))
+			print "Cantidad:%i" % cantidad
 
-		#Ciclo saldo invalido
-		# while cantidad*precio_min > data["balance"]:
-		# 	lcd.lcd_clean()
-		# 	lcd.lcd_string("Tiempo excede saldo")
-		# 	lcd.lcd_goto(2,0)
-		# 	lcd.lcd_string("Ingreselo nuevamente")
-		# 	time.sleep(3)
-		# 	lcd.lcd_clean()
-		# 	lcd.lcd_string("Ingrese tiempo ")
-		# 	lcd.lcd_goto(2,0)
-		# 	cantidad=int(lcd.kp_input(dev))
-		#tools.restar_monto(data,cantidad*precio_min)
-		lcd.lcd_clean()
-		lcd.lcd_string("Creando red wifi...")
-		tools.hostapd("stop")
-		password=tools.set_hostapd_conf()
-		tools.hostapd("start")
-		lcd.lcd_clean()
-		lcd.lcd_string("Red:BIPnet")
-		lcd.lcd_goto(2,0)
-		lcd.lcd_string("Pass:"+password)
-		time.sleep(10)
-		lcd.lcd_clean()
-		lcd.lcd_string("Gracias")
-		#tools.clock(60*cantidad)
-		current_tag=0
+			Ciclo saldo invalido
+			while cantidad*precio_min > data["balance"]:
+				lcd.lcd_clean()
+				lcd.lcd_string("Tiempo excede saldo")
+				lcd.lcd_goto(2,0)
+				lcd.lcd_string("Ingreselo nuevamente")
+				time.sleep(3)
+				lcd.lcd_clean()
+				lcd.lcd_string("Ingrese tiempo ")
+				lcd.lcd_goto(2,0)
+				cantidad=int(lcd.kp_input(dev))
+			tools.restar_monto(data,cantidad*precio_min)
+			lcd.lcd_clean()
+			lcd.lcd_string("Creando red wifi...")
+			tools.hostapd("stop")
+			password=tools.set_hostapd_conf()
+			tools.hostapd("start")
+			lcd.lcd_clean()
+			lcd.lcd_string("Red:BIPnet")
+			lcd.lcd_goto(2,0)
+			lcd.lcd_string("Pass:"+password)
+			time.sleep(10)
+			lcd.lcd_clean()
+			lcd.lcd_string("Gracias")
+			tools.clock(60*cantidad)
+			current_tag=0
 			#Ingresar el cupon
 			# lcd.lcd_clean()
 			# lcd.lcd_string("Tienes Cupon?")
@@ -93,22 +94,22 @@ if __name__=="__main__":
 			# if int(tiene_cupon)==1:
 			# 	precio_total=cantidad*precio_min
 			# else:
-		# else if int(data["balance"])==0:
-		# 	lcd.lcd_clean()
-		# 	lcd.lcd_string("Tag sin saldo")
-		# 	lcd.lcd_goto(2,0)
-		# 	lcd.lcd_string("Recargar")
-		# 	time.sleep(3)
-		# 	lcd.lcd_clean()
-		# 	lcd.lcd_string("BIPnet WIFI")
-		# 	current_tag=0
-		# else:
-		# 	lcd.lcd_clean()
-		# 	lcd.lcd_string("Tag Invalido")
-		# 	time.sleep(3)
-		# 	lcd.lcd_clean()
-		# 	lcd.lcd_string("BIPnet WIFI")
-		# 	current_tag=0
+		else if int(data["balance"])==0:
+			lcd.lcd_clean()
+			lcd.lcd_string("Tag sin saldo")
+			lcd.lcd_goto(2,0)
+			lcd.lcd_string("Recargar")
+			time.sleep(3)
+			lcd.lcd_clean()
+			lcd.lcd_string("BIPnet WIFI")
+			current_tag=0
+		else:
+			lcd.lcd_clean()
+			lcd.lcd_string("Tag Invalido")
+			time.sleep(3)
+			lcd.lcd_clean()
+			lcd.lcd_string("BIPnet WIFI")
+			current_tag=0
 			#Levantar el hostapd con la clave generada por la aplicacion
 
 

@@ -48,11 +48,14 @@ class Utils:
             return False
 
     def restar_monto(self,data_user,monto):
-        headers = {'content-type': 'x-www-form-urlencoded'}
+        headers = {'content-type': 'application/x-www-form-urlencoded'}
         print data_user["userId"]
         payload = {"amount":str(monto),"userId":data_user["userId"]}
-        resp=requests.post("http://csz-embebidosproj.nodejitsu.com/api/subtr/user/balance",data=payload,headers=headers)
-        return resp.json()
+        resp=requests.post("http://csz-embebidosproj.nodejitsu.com/api/subtr/user/balance",data=payload,headers=headers).json()
+        if resp['message']=='success':
+            return resp
+        else:
+            return False
 
 
 if __name__=="__main__":
@@ -64,7 +67,7 @@ if __name__=="__main__":
     else:
         print "nedde"
 
-    print tools.restar_monto(data,200)
+    print tools.restar_monto(data,0)
     # print "Password:"+tools.set_hostapd_conf()
     # print "Cerrando hostapd"
     # print tools.hostapd("stop")

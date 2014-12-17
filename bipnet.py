@@ -43,7 +43,7 @@ if __name__=="__main__":
 			print data
 			nombre=data['username']
 			lcd.lcd_clean()
-			lcd.lcd_string("Bienvenido diego")
+			lcd.lcd_string("Bienvenido "+nombre)
 			time.sleep(3)
 			#Obtener la informacion del usuario (nombre,saldo,tipo_usuario)
 			#imprimir que debe ingresar la cantidad a utilizar
@@ -113,7 +113,7 @@ if __name__=="__main__":
 			# if int(tiene_cupon)==1:
 			# 	precio_total=cantidad*precio_min
 			# else:
-		elif int(data["balance"])==0:
+		elif data["balance"] && int(data["balance"])==0:
 			lcd.lcd_clean()
 			lcd.lcd_string("Tag sin saldo")
 			lcd.lcd_goto(2,0)

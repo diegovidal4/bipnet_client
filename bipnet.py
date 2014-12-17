@@ -1,6 +1,7 @@
 from utils import Utils
 from rfid import RFID_Controller
 from Phidgets.PhidgetException import PhidgetErrorCodes, PhidgetException
+from Phidgets.Devices.RFID import RFID, RFIDTagProtocol
 import sys,time
 from evdev import InputDevice, ecodes
 import lcd_kp as lcd
@@ -11,6 +12,12 @@ if __name__=="__main__":
 	precio_min=500/60
 	rfid_tag=RFID_Controller()
 	rfid_tag.displayDeviceInfo()
+	print("Turning on the RFID antenna....")
+	rfid_tag.rfid.setAntennaOn(True)
+	try:
+	   rfid_tag.rfid.write("Some Tag", RFIDTagProtocol.PHIDGET_RFID_PROTOCOL_PHIDGETS)
+	except PhidgetException as e:
+   	print("Phidget Exception %i: %s" % (e.code, e.details))
 	current_tag=0
 	#Inicializamos clase con herramientas
 	tools=Utils()

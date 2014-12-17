@@ -12,8 +12,8 @@ if __name__=="__main__":
 	precio_min=500/60
 
 	#Inicializamos el RFID
-	# rfid_tag=RFID_Controller()
-	# rfid_tag.displayDeviceInfo()
+	rfid_tag=RFID_Controller()
+	rfid_tag.displayDeviceInfo()
 	print("Turning on the RFID antenna....")
 	rfid_tag.rfid.setAntennaOn(True)
 	try:
@@ -33,10 +33,9 @@ if __name__=="__main__":
 	dev.grab()
 	while(1):
 		#Loop para no dejar que otro tag interfiera
-		# while(current_tag==rfid_tag.last_tag):
-		# 	time.sleep(0.1)
-		# current_tag=rfid_tag.last_tag
-		current_tag="4d004a9d26"
+		while(current_tag==rfid_tag.last_tag):
+			time.sleep(0.1)
+		current_tag=rfid_tag.last_tag
 		print "Cambio el tag!:%s" % current_tag
 		#Verificar si el tag es valido
 		data=tools.tag_valido(current_tag)

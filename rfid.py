@@ -17,6 +17,8 @@ class RFID_Controller:
 			self.rfid.setOnTagHandler(self.rfidTagGained)
 			self.rfid.setOnTagLostHandler(self.rfidTagLost)
 			self.rfid.openPhidget()
+			print("Turning on the RFID antenna....")
+			self.rfid.setAntennaOn(True)
 		except RuntimeError as e:
 			print("Runtime Exception: %s" % e.details)
 			print("Exiting....")
@@ -54,10 +56,7 @@ class RFID_Controller:
 		source = e.device
 		self.rfid.setLEDOn(0)
 		#print("RFID %i: Tag Lost: %s" % (source.getSerialNum(), e.tag))
-
-	def antenna_on(self):
-		print("Turning on the RFID antenna....")
-		self.rfid.setAntennaOn(True)
+		
 	def end_program(self):
 		try:
 			self.rfid.closePhidget()

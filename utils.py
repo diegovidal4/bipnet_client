@@ -5,7 +5,7 @@ import sys,time
 import requests
 
 class Utils:
-    def pass_generator(self,size=6,chars=string.ascii_lowercase + string.digits):
+    def pass_generator(self,size=6,chars=string.ascii_uppercase + string.digits):
     	return ''.join(random.choice(chars) for _ in range(size))
 
     def clock(self,seconds):

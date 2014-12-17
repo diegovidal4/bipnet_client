@@ -29,7 +29,6 @@ if __name__=="__main__":
 
 		#Verificar si el tag es valido
 		data=tools.tag_valido(current_tag)
-		#tag_valido=urllib2.urlopen("http://example.com/foo/bar").read()
 		if data: #(string del camilo)
 			nombre=data['username']
 			lcd.lcd_clean()
@@ -68,6 +67,7 @@ if __name__=="__main__":
 				time.sleep(10)
 				lcd.lcd_clean()
 				lcd.lcd_string("Gracias")
+				tools.clock(60*cantidad)
 		else:
 			lcd.lcd_clean()
 			lcd.lcd_string("Tag Invalido")

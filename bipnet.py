@@ -99,6 +99,7 @@ if __name__=="__main__":
 				lcd.lcd_string("Gracias")
 				tools.clock(60*cantidad)
 				current_tag=0
+				rfid_tag.last_tag=0
 			#Ingresar el cupon
 			# lcd.lcd_clean()
 			# lcd.lcd_string("Tienes Cupon?")

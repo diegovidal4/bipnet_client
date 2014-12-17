@@ -46,7 +46,6 @@ class RFID_Controller:
 		print("RFID %i: Output %i State: %s" % (source.getSerialNum(), e.index, e.state))
 
 	def rfidTagGained(self,e):
-		tools=Utils()
 		source = e.device
 		self.last_tag=e.tag
 		self.rfid.setLEDOn(1)
@@ -54,7 +53,14 @@ class RFID_Controller:
 	def rfidTagLost(self,e):
 		source = e.device
 		self.rfid.setLEDOn(0)
-		#print("RFID %i: Tag Lost: %s" % (source.getSerialNum(), e.tag))
+
+	def displayDeviceInfo(self):
+	    print("|------------|----------------------------------|--------------|------------|")
+	    print("|- Attached -|-              Type              -|- Serial No. -|-  Version -|")
+	    print("|------------|----------------------------------|--------------|------------|")
+	    print("|- %8s -|- %30s -|- %10d -|- %8d -|" % (self.rfid.isAttached(), self.rfid.getDeviceName(), self.rfid.getSerialNum(), self.rfid.getDeviceVersion()))
+	    print("|------------|----------------------------------|--------------|------------|")
+	    print("Number of outputs: %i -- Antenna Status: %s -- Onboard LED Status: %s" % (self.rfid.getOutputCount(), self.rfid.getAntennaOn(), self.rfid.getLEDOn()))
 		
 	def end_program(self):
 		try:

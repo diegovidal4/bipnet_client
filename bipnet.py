@@ -122,6 +122,7 @@ if __name__=="__main__":
 			lcd.lcd_clean()
 			lcd.lcd_string("BIPnet WIFI")
 			current_tag=0
+			rfid_tag.last_tag=0
 		else:
 			lcd.lcd_clean()
 			lcd.lcd_string("Tag Invalido")
@@ -129,6 +130,7 @@ if __name__=="__main__":
 			lcd.lcd_clean()
 			lcd.lcd_string("BIPnet WIFI")
 			current_tag=0
+			rfid_tag.last_tag=0
 			#Levantar el hostapd con la clave generada por la aplicacion
 
 

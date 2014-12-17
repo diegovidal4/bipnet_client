@@ -30,6 +30,7 @@ if __name__=="__main__":
 		#Verificar si el tag es valido
 		data=tools.tag_valido(current_tag)
 		if data: #(string del camilo)
+			print data
 			nombre=data['username']
 			lcd.lcd_clean()
 			lcd.lcd_string("Bienvenido "+nombre)

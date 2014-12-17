@@ -32,6 +32,9 @@ if __name__=="__main__":
 	#KeyPad a usar
 	dev.grab()
 	while(1):
+		dev = InputDevice("/dev/input/by-id/usb-05d5_KEYBOARD-event-kbd")
+		#KeyPad a usar
+		dev.grab()
 		#Loop para no dejar que otro tag interfiera
 		while(current_tag==rfid_tag.last_tag):
 			time.sleep(0.1)
@@ -52,7 +55,6 @@ if __name__=="__main__":
 			lcd.lcd_clean()
 			lcd.lcd_string("Ingrese tiempo ")
 			lcd.lcd_goto(2,0)
-			print lcd.kp_input(dev)
 			cantidad=int(lcd.kp_input(dev))
 			print "Cantidad:%i" % cantidad
 

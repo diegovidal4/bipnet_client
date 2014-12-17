@@ -113,7 +113,7 @@ if __name__=="__main__":
 			# if int(tiene_cupon)==1:
 			# 	precio_total=cantidad*precio_min
 			# else:
-		elif data["balance"] and int(data["balance"])==0:
+		elif data and int(data["balance"])==0:
 			lcd.lcd_clean()
 			lcd.lcd_string("Tag sin saldo")
 			lcd.lcd_goto(2,0)

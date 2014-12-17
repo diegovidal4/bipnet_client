@@ -54,7 +54,7 @@ if __name__=="__main__":
 			cantidad=int(lcd.kp_input(dev))
 			print "Cantidad:%i" % cantidad
 
-			Ciclo saldo invalido
+			#Ciclo saldo invalido
 			while cantidad*precio_min > data["balance"]:
 				lcd.lcd_clean()
 				lcd.lcd_string("Tiempo excede saldo")

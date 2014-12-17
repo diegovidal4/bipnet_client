@@ -39,46 +39,46 @@ if __name__=="__main__":
 		# print "Cambio el tag!:%s" % current_tag
 		#Verificar si el tag es valido
 		#data=tools.tag_valido(current_tag)
-		if data: #(string del camilo)
+		#if data: #(string del camilo)
 			#print data
 			#nombre=data['username']
-			lcd.lcd_clean()
-			lcd.lcd_string("Bienvenido "+nombre)
-			time.sleep(3)
-			#Obtener la informacion del usuario (nombre,saldo,tipo_usuario)
-			#imprimir que debe ingresar la cantidad a utilizar
-			lcd.lcd_clean()
-			lcd.lcd_string("Ingrese tiempo ")
-			lcd.lcd_goto(2,0)
-			#cantidad=int(lcd.kp_input(dev))
-			#print "Cantidad:%i" % cantidad
+		lcd.lcd_clean()
+		lcd.lcd_string("Bienvenido "+nombre)
+		time.sleep(3)
+		#Obtener la informacion del usuario (nombre,saldo,tipo_usuario)
+		#imprimir que debe ingresar la cantidad a utilizar
+		lcd.lcd_clean()
+		lcd.lcd_string("Ingrese tiempo ")
+		lcd.lcd_goto(2,0)
+		#cantidad=int(lcd.kp_input(dev))
+		#print "Cantidad:%i" % cantidad
 
-			#Ciclo saldo invalido
-			# while cantidad*precio_min > data["balance"]:
-			# 	lcd.lcd_clean()
-			# 	lcd.lcd_string("Tiempo excede saldo")
-			# 	lcd.lcd_goto(2,0)
-			# 	lcd.lcd_string("Ingreselo nuevamente")
-			# 	time.sleep(3)
-			# 	lcd.lcd_clean()
-			# 	lcd.lcd_string("Ingrese tiempo ")
-			# 	lcd.lcd_goto(2,0)
-			# 	cantidad=int(lcd.kp_input(dev))
-			#tools.restar_monto(data,cantidad*precio_min)
-			lcd.lcd_clean()
-			lcd.lcd_string("Creando red wifi...")
-			tools.hostapd("stop")
-			password=tools.set_hostapd_conf()
-			tools.hostapd("start")
-			lcd.lcd_clean()
-			lcd.lcd_string("Red:BIPnet")
-			lcd.lcd_goto(2,0)
-			lcd.lcd_string("Pass:"+password)
-			time.sleep(10)
-			lcd.lcd_clean()
-			lcd.lcd_string("Gracias")
-			#tools.clock(60*cantidad)
-			current_tag=0
+		#Ciclo saldo invalido
+		# while cantidad*precio_min > data["balance"]:
+		# 	lcd.lcd_clean()
+		# 	lcd.lcd_string("Tiempo excede saldo")
+		# 	lcd.lcd_goto(2,0)
+		# 	lcd.lcd_string("Ingreselo nuevamente")
+		# 	time.sleep(3)
+		# 	lcd.lcd_clean()
+		# 	lcd.lcd_string("Ingrese tiempo ")
+		# 	lcd.lcd_goto(2,0)
+		# 	cantidad=int(lcd.kp_input(dev))
+		#tools.restar_monto(data,cantidad*precio_min)
+		lcd.lcd_clean()
+		lcd.lcd_string("Creando red wifi...")
+		tools.hostapd("stop")
+		password=tools.set_hostapd_conf()
+		tools.hostapd("start")
+		lcd.lcd_clean()
+		lcd.lcd_string("Red:BIPnet")
+		lcd.lcd_goto(2,0)
+		lcd.lcd_string("Pass:"+password)
+		time.sleep(10)
+		lcd.lcd_clean()
+		lcd.lcd_string("Gracias")
+		#tools.clock(60*cantidad)
+		current_tag=0
 			#Ingresar el cupon
 			# lcd.lcd_clean()
 			# lcd.lcd_string("Tienes Cupon?")

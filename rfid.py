@@ -54,6 +54,10 @@ class RFID_Controller:
 		source = e.device
 		self.rfid.setLEDOn(0)
 		#print("RFID %i: Tag Lost: %s" % (source.getSerialNum(), e.tag))
+
+	def antenna_on(self):
+		print("Turning on the RFID antenna....")
+		self.rfid.setAntennaOn(True)
 	def end_program(self):
 		try:
 			self.rfid.closePhidget()

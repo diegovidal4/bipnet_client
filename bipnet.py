@@ -17,7 +17,7 @@ if __name__=="__main__":
 	try:
 	   rfid_tag.rfid.write("Some Tag", RFIDTagProtocol.PHIDGET_RFID_PROTOCOL_PHIDGETS)
 	except PhidgetException as e:
-   	print("Phidget Exception %i: %s" % (e.code, e.details))
+		print("Phidget Exception %i: %s" % (e.code, e.details))
 	current_tag=0
 	#Inicializamos clase con herramientas
 	tools=Utils()

@@ -39,8 +39,8 @@ if __name__=="__main__":
 		print "Cambio el tag!:%s" % current_tag
 		#Verificar si el tag es valido
 		data=tools.tag_valido(current_tag)
+		print data
 		if data: #(string del camilo)
-			print data
 			nombre=data['username']
 			lcd.lcd_clean()
 			lcd.lcd_string("Bienvenido "+nombre)
@@ -94,7 +94,7 @@ if __name__=="__main__":
 				lcd.lcd_string("Red:BIPnet")
 				lcd.lcd_goto(2,0)
 				lcd.lcd_string("Pass:"+password)
-				time.sleep(10)
+				time.sleep(15)
 				lcd.lcd_clean()
 				lcd.lcd_string("Gracias")
 				tools.clock(60*cantidad)

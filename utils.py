@@ -49,8 +49,10 @@ class Utils:
 
 if __name__=="__main__":
     tools=Utils()
-    if tools.tag_valido("4d004a9d26"):
+    data=tools.tag_valido("4d004a9d26")
+    if data:
         print "buena"
+        print data
     else:
         print "nedde"
     # print "Password:"+tools.set_hostapd_conf()

@@ -9,7 +9,7 @@ import lcd_kp as lcd
 
 
 if __name__=="__main__":
-	precio_min=500/60
+	precio_min=10
 
 	#Inicializamos el RFID
 	rfid_tag=RFID_Controller()
@@ -71,11 +71,11 @@ if __name__=="__main__":
 			lcd.lcd_string("1. Si, 2. No :")
 			acepto=''
 			#loop para esperar el evento de boton
-			while tiene_cupon=='':
+			while acepto=='':
 				time.sleep(0.1)
 				acepto=lcd.kp_input(dev)
-			print "Tiene cupon?:%i" % int(acepto)
-			if int(tiene_cupon)!=1:
+			print "acepto?:%i" % int(acepto)
+			if int(acepto)!=1:
 				lcd.lcd_string("Gracias")
 				current_tag=0
 			else:

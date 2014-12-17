@@ -2,7 +2,7 @@ import string
 import random
 import subprocess
 import sys,time
-import urllib2,json
+import requests
 
 class Utils:
     def pass_generator(self,size=6,chars=string.ascii_lowercase + string.digits):
@@ -40,12 +40,20 @@ class Utils:
         return (True,30)
 
     def tag_valido(self,current_tag):
-        tag_valido=urllib2.urlopen("http://csz-embebidosproj.nodejitsu.com/api/verify/user/tag?cardId="+current_tag)
-        data = json.loads(tag_valido.read())
+        tag_valido=requests.get("http://csz-embebidosproj.nodejitsu.com/api/verify/user/tag?cardId="+current_tag)
+        data = tag_valido.json()
         if data['message']=="usuario valido":
             return data
         else:
             return False
+
+    def restar_monto(self,data_user,monto):
+        headers = {'content-type': 'x-www-form-urlencoded'}
+        print data_user["userId"]
+        payload = {"amount":str(monto),"userId":data_user["userId"]}
+        resp=requests.post("http://csz-embebidosproj.nodejitsu.com/api/subtr/user/balance",data=payload,headers=headers)
+        return resp.json()
+
 
 if __name__=="__main__":
     tools=Utils()
@@ -55,6 +63,8 @@ if __name__=="__main__":
         print data
     else:
         print "nedde"
+
+    print tools.restar_monto(data,200)
     # print "Password:"+tools.set_hostapd_conf()
     # print "Cerrando hostapd"
     # print tools.hostapd("stop")

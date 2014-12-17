@@ -28,8 +28,8 @@ if __name__=="__main__":
   	lcd.lcd_init()
   	lcd.lcd_clean()
 	lcd.lcd_string("BIPnet WIFI")
-  	#KeyPad a usar
 	dev = InputDevice("/dev/input/by-id/usb-05d5_KEYBOARD-event-kbd")
+	#KeyPad a usar
 	dev.grab()
 	while(1):
 		#Loop para no dejar que otro tag interfiera
@@ -52,6 +52,7 @@ if __name__=="__main__":
 			lcd.lcd_clean()
 			lcd.lcd_string("Ingrese tiempo ")
 			lcd.lcd_goto(2,0)
+			print lcd.kp_input(dev)
 			cantidad=int(lcd.kp_input(dev))
 			print "Cantidad:%i" % cantidad
 

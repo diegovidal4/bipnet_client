@@ -28,10 +28,10 @@ if __name__=="__main__":
 		print "Cambio el tag!:%s" % current_tag
 
 		#Verificar si el tag es valido
-		tag_valido=tools.tag_valido(current_tag)
-		nombre="Diego"
+		data=tools.tag_valido(current_tag)
 		#tag_valido=urllib2.urlopen("http://example.com/foo/bar").read()
-		if tag_valido: #(string del camilo)
+		if data: #(string del camilo)
+			nombre=data['username']
 			lcd.lcd_clean()
 			lcd.lcd_string("Bienvenido "+nombre)
 			time.sleep(3)

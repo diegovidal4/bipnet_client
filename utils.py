@@ -29,7 +29,7 @@ class Utils:
         return password
 
     def hostapd(self,command='status'):
-        p=subprocess.Popen(["service", "hostapd",command])
+        p=subprocess.Popen(["sh","rebootAp.sh",command])
         out, err = p.communicate()
         return out
 

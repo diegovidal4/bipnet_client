@@ -8,7 +8,7 @@ import lcd_kp as lcd
 
 
 if __name__=="__main__":
-	precio_min=500
+	precio_min=500/60
 	rfid_tag=RFID_Controller()
 	current_tag=0
 	#Inicializamos clase con herramientas

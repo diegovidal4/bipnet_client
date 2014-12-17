@@ -54,22 +54,25 @@ if __name__=="__main__":
 			print "Cantidad:%i" % cantidad
 
 			#Ciclo saldo invalido
-			while cantidad*precio_min > data["balance"]:
-				lcd.lcd_clean()
-				lcd.lcd_string("Tiempo excede saldo")
-				lcd.lcd_goto(2,0)
-				lcd.lcd_string("Ingreselo nuevamente")
-				time.sleep(3)
-				lcd.lcd_clean()
-				lcd.lcd_string("Ingrese tiempo ")
-				lcd.lcd_goto(2,0)
-				cantidad=int(lcd.kp_input(dev))
+			if data["typeUser"]!="Admin":
+				while cantidad*precio_min > data["balance"]:
+					lcd.lcd_clean()
+					lcd.lcd_string("Tiempo excede saldo")
+					lcd.lcd_goto(2,0)
+					lcd.lcd_string("Ingreselo nuevamente")
+					time.sleep(3)
+					lcd.lcd_clean()
+					lcd.lcd_string("Ingrese tiempo ")
+					lcd.lcd_goto(2,0)
+					cantidad=int(lcd.kp_input(dev))
 
-			lcd.lcd_clean()
-			lcd.lcd_string("Precio:"+str(cantidad*precio_min))
-			lcd.lcd_goto(2,0)
-			lcd.lcd_string("1. Si, 2. No :")
-			acepto=''
+				lcd.lcd_clean()
+				lcd.lcd_string("Precio:"+str(cantidad*precio_min))
+				lcd.lcd_goto(2,0)
+				lcd.lcd_string("1. Si, 2. No :")
+				acepto=''
+			else:
+				acepto=1
 			#loop para esperar el evento de boton
 			while acepto=='':
 				time.sleep(0.1)
@@ -84,6 +87,7 @@ if __name__=="__main__":
 				lcd.lcd_string("Creando red wifi...")
 				tools.hostapd("stop")
 				password=tools.set_hostapd_conf()
+				print "Password:"+password
 				tools.hostapd("start")
 				lcd.lcd_clean()
 				lcd.lcd_string("Red:BIPnet")

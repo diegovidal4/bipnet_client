@@ -64,21 +64,36 @@ if __name__=="__main__":
 				lcd.lcd_string("Ingrese tiempo ")
 				lcd.lcd_goto(2,0)
 				cantidad=int(lcd.kp_input(dev))
-			tools.restar_monto(data,cantidad*precio_min)
+
 			lcd.lcd_clean()
-			lcd.lcd_string("Creando red wifi...")
-			tools.hostapd("stop")
-			password=tools.set_hostapd_conf()
-			tools.hostapd("start")
-			lcd.lcd_clean()
-			lcd.lcd_string("Red:BIPnet")
+			lcd.lcd_string("Precio:"+str(cantidad*precio_min))
 			lcd.lcd_goto(2,0)
-			lcd.lcd_string("Pass:"+password)
-			time.sleep(10)
-			lcd.lcd_clean()
-			lcd.lcd_string("Gracias")
-			tools.clock(60*cantidad)
-			current_tag=0
+			lcd.lcd_string("1. Si, 2. No :")
+			acepto=''
+			#loop para esperar el evento de boton
+			while tiene_cupon=='':
+				time.sleep(0.1)
+				acepto=lcd.kp_input(dev)
+			print "Tiene cupon?:%i" % int(acepto)
+			if int(tiene_cupon)!=1:
+				lcd.lcd_string("Gracias")
+				current_tag=0
+			else:
+				tools.restar_monto(data,cantidad*precio_min)
+				lcd.lcd_clean()
+				lcd.lcd_string("Creando red wifi...")
+				tools.hostapd("stop")
+				password=tools.set_hostapd_conf()
+				tools.hostapd("start")
+				lcd.lcd_clean()
+				lcd.lcd_string("Red:BIPnet")
+				lcd.lcd_goto(2,0)
+				lcd.lcd_string("Pass:"+password)
+				time.sleep(10)
+				lcd.lcd_clean()
+				lcd.lcd_string("Gracias")
+				tools.clock(60*cantidad)
+				current_tag=0
 			#Ingresar el cupon
 			# lcd.lcd_clean()
 			# lcd.lcd_string("Tienes Cupon?")
